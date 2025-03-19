@@ -32,7 +32,7 @@ int LifeQuality(const vector<double>& inputs) {
 static void trainPerceptronExtra(percSM& perc, int iterations, function<vector<double>()> inputGenerator, vector<tuple<int, int>>& MinMax, vector<std::string>& Label) {
 	for (int i = 0; i < iterations; i++) {
 		vector<double> inputs = inputGenerator();
-		perc.trainSMExtra(inputs, MinMax, Label);
+		perc.train(inputs, MinMax, Label);
 	}
 }
 
@@ -42,7 +42,7 @@ static int testPerceptronVerbose(percSM& perc, int iterations, function<vector<d
 
 	for (int i = 0; i < iterations; i++) {
 		vector<double> inputs = inputGenerator();
-		int guess = perc.guessSMExtra(inputs, MinMax, Label);
+		int guess = perc.guess(inputs, MinMax, Label);
 		int answer = perc.getAnswer(inputs);
 
 		if (guess != answer) {  // Only print incorrect cases
