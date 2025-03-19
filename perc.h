@@ -72,7 +72,7 @@ public:
 		return -1;
 	}
 
-    int guessSMExtra(std::vector<double>& inputs, std::vector<std::tuple<int, int>>& MinMax, std::vector<std::string>& Label) {
+    int guess(std::vector<double>& inputs, std::vector<std::tuple<int, int>>& MinMax, std::vector<std::string>& Label) {
         double sum = 0;
         Minmaxer_TwoDiff(inputs, MinMax, Label);
         for (int i = 0; i < weightsExtra.size(); i++) {
@@ -112,8 +112,8 @@ public:
 		}
 	}
 
-	void trainSMExtra(std::vector<double>& inputs, std::vector<std::tuple<int, int>>& MinMax, std::vector<std::string>& Label) {
-		int guessV = guessSMExtra(inputs, MinMax, Label);
+	void train(std::vector<double>& inputs, std::vector<std::tuple<int, int>>& MinMax, std::vector<std::string>& Label) {
+		int guessV = guess(inputs, MinMax, Label);
 		int answerV = getAnswer(inputs);
 		int error = calculateError(answerV, guessV);
 		updateWeightsExtra(error, inputs);
